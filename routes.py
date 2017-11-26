@@ -15,7 +15,7 @@ app = Flask(__name__)
 def inicio():
   con = lite.connect('datos.db')
   cur = con.cursor()
-  cur.execute("SELECT * FROM Datos ORDER BY Fecha,Hora DESC limit 10")
+  cur.execute("SELECT * FROM Datos ORDER BY Fecha DESC, Hora DESC limit 10")
   return render_template('inicio.html', rows=cur.fetchall())
 
 @app.route('/umbral', methods=['GET','POST'])
@@ -29,7 +29,7 @@ def umbral():
 
     con = lite.connect('datos.db')
     cur = con.cursor()
-    cur.execute("SELECT * FROM Datos ORDER BY Fecha,Hora DESC limit 5")
+    cur.execute("SELECT * FROM Datos ORDER BY Fecha DESC, Hora DESC limit 5")
     rows = cur.fetchall()
     for row in rows:
       if float(umb) < row[2]:
@@ -52,10 +52,11 @@ def media():
       med_local = 0
       con = lite.connect('datos.db')
       cur = con.cursor()
-      cur.execute("SELECT * FROM Datos ORDER BY Fecha,Hora DESC limit 3")
+      cur.execute("SELECT * FROM Datos ORDER BY Fecha DESC, Hora DESC limit 3")
       rows = cur.fetchall()
       num = len(rows)
       for row in rows:
+	#print row[2]
         med_local = med_local+row[2]
 
       med_local = med_local/num
@@ -67,6 +68,7 @@ def media():
       leer = bclient.read('Datos', 'Numero', limit = 3)
       tot = len(leer)
       for lectura in range(len(leer)):
+	#print leer[lectura]['data']
 	med_remota = med_remota+float(leer[lectura]['data'])
 
       med_remota = med_remota/tot

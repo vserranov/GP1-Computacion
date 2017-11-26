@@ -21,7 +21,7 @@ def job():
 
     # Almacenamos el numero, la fecha y la hora en la base de datos local (sqlite)
     datos = (
-        (time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), array[2])
+        (time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), float(array[2]))
     )
 
     try:
@@ -62,7 +62,7 @@ def job():
     bclient.write('Datos', 'Hora', datos[1]) 
     bclient.write('Datos', 'Numero', datos[2])
 
-schedule.every(2).minutes.do(job)
+schedule.every(10).seconds.do(job)
 
 while True:
     schedule.run_pending()
