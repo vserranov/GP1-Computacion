@@ -1,4 +1,7 @@
-from flask import Flask, render_template, request
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from flask import Flask, render_template, request, redirect
 from beebotte import *
 import sqlite3 as lite
 import array, json
@@ -11,12 +14,16 @@ med_remota = 0
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def inicio():
-  con = lite.connect('datos.db')
-  cur = con.cursor()
-  cur.execute("SELECT * FROM Datos ORDER BY Fecha DESC, Hora DESC limit 10")
-  return render_template('inicio.html', rows=cur.fetchall())
+  if request.method == 'POST' and request.form['Beebotte'] == 'Graficas':
+    return redirect("https://beebotte.com/dash/8b7cbb90-d29f-11e7-bfef-6f68fef5ca14", code=302) 
+
+  else:
+    con = lite.connect('datos.db')
+    cur = con.cursor()
+    cur.execute("SELECT * FROM Datos ORDER BY Fecha DESC, Hora DESC limit 10")
+    return render_template('inicio.html', rows=cur.fetchall())
 
 @app.route('/umbral', methods=['GET','POST'])
 def umbral():
@@ -77,12 +84,5 @@ def media():
   else:
     return render_template('media.html', media=0, datos=0)
 
-@app.route('/graficas')
-def graficas():
-  con = lite.connect('datos.db')
-  cur = con.cursor()
-  cur.execute("SELECT * FROM Datos ORDER BY Fecha,Hora DESC limit 10")
-  return render_template('graficas.html', rows=cur.fetchall())
-
 if __name__ == '__main__':
-  app.run(debug=True, host="0.0.0.0")
+  app.run(debug=True, host="0.0.0.0", port=8080)

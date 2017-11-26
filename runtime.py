@@ -62,7 +62,7 @@ def job():
     bclient.write('Datos', 'Hora', datos[1]) 
     bclient.write('Datos', 'Numero', datos[2])
 
-schedule.every(10).seconds.do(job)
+schedule.every(9).seconds.do(job)
 
 while True:
     schedule.run_pending()
