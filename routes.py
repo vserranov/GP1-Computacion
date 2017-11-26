@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET','POST'])
 def inicio():
-  if request.method == 'POST' and request.form['Beebotte'] == 'Graficas':
+  if request.method == 'POST' and request.form['Beebotte'] == 'Graficas externas':
     return redirect("https://beebotte.com/dash/8b7cbb90-d29f-11e7-bfef-6f68fef5ca14", code=302) 
 
   else:
@@ -36,10 +36,10 @@ def umbral():
 
     con = lite.connect('datos.db')
     cur = con.cursor()
-    cur.execute("SELECT * FROM Datos ORDER BY Fecha DESC, Hora DESC limit 5")
+    cur.execute("SELECT * FROM Datos ORDER BY Fecha DESC, Hora DESC")
     rows = cur.fetchall()
     for row in rows:
-      if float(umb) < row[2]:
+      if float(umb) < row[2] and cuenta < 10:
 	superan[0+cuenta*3:3+cuenta*3] = [row[0], row[1], row[2]] 
         cuenta = cuenta+1
 
