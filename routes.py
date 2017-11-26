@@ -75,5 +75,12 @@ def media():
   else:
     return render_template('media.html', media=0, datos=0)
 
+@app.route('/graficas')
+def graficas():
+  con = lite.connect('datos.db')
+  cur = con.cursor()
+  cur.execute("SELECT * FROM Datos ORDER BY Fecha,Hora DESC limit 10")
+  return render_template('graficas.html', rows=cur.fetchall())
+
 if __name__ == '__main__':
   app.run(debug=True, host="0.0.0.0")
