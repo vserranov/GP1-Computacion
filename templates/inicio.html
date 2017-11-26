@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="jumbo">
+    <h2>Ultimos 10 numeros<h2>
+    <h2>
+    <table align="center" vertical-align="center" border="5" border-color="#000033">
+      <tbody>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Numero</th>
+        {% for row in rows %}
+        <tr>
+          <th>{{row[0]}}</th>
+          <th>{{row[1]}}</th>
+          <th>{{row[2]}}</th>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <h2>
+  </div>
+{% endblock %}

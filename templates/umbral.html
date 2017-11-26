@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+  <form action="umbral" method="post">
+  <div class="jumbo">
+    <h2>Introduzca un umbral<h2>
+    <h3>
+      Umbral <input type="float" name="Umbral" id="Umbral" maxlength="5" placeholder="{{umbral}}"/>
+      <input type="submit" value="Enviar" style="height: 30px; width: 80px; font-size: 16px;">
+    <h3>
+  </div>
+  <div class="jumbo">
+    <h3>Se ha superado el umbral {{veces}} veces<h3>
+    <h3>
+    <table align="center" vertical-align="center" border="5" border-color="#000033">
+      <tbody>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Numero</th>
+        {% for valor in longitud %}
+        <tr>
+          <th>{{pasan[3*valor]}}</th>
+          <th>{{pasan[3*valor+1]}}</th>
+          <th>{{pasan[3*valor+2]}}</th>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <h3>
+  </div>
+  </form>
+{% endblock %}

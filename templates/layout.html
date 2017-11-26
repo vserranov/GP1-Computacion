@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>GP1 Computacion</title>  
+    <strong><link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"></strong>
+  </head>
+  <body background="static/img/background.jpg" width="2122" heigth="1412">
+    <header>
+      <div class="container">
+	<h1 class="logo">Computacion</h1>
+        <strong><nav>
+          <ul class="menu">
+            <li><a href="{{ url_for('inicio') }}">Inicio</a></li>
+            <li><a href="{{ url_for('umbral') }}">Umbral</a></li>
+            <li><a href="{{ url_for('media') }}">Media</a></li>
+          </ul>
+        </nav></strong>
+      </div>
+    </header>
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+    <footer>
+      <div class="container"> 
+        <f1 class="logo">Universidad de Alcala</f1>
+      </div>
+    </footer>
+  </body>
+</html>

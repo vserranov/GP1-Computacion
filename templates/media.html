@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+  <form action="media" method="post">
+  <div class="jumbo">
+    <h2>
+      <br>Seleccione la base de datos para obtener la media</br>
+    <h2>
+  </div>
+  <div class="jumbo">
+    <h3>La media de los datos en la base de datos local es de {{media}}<h3>
+    <h3>La media de los datos en la base de datos remota es de {{datos}}<h3>
+    <h3>
+      <input type="submit" name="Media" class="boton" value="Local">
+      <input type="submit" name="Media" class="boton" value="Beebotte">
+    <h3>
+  </div>
+  </form>
+{% endblock %}

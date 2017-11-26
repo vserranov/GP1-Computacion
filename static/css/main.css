@@ -1,0 +1,130 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 130%;
+  color: #444;
+  text-align: center;
+  width: 100%
+  heigth: 520px;
+  color: white;
+}
+
+/*
+ * Create dark grey header with a white logo
+ */
+
+header {
+  background-color: #2B2B2B;
+  height: 35px;
+  width: 100%;
+  opacity: .9;
+  margin-bottom: 10px;
+}
+
+header h1.logo {
+  margin: 0;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  float: left;
+}
+
+header h1.logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/*
+ * Center the body content
+*/
+
+.container {
+  width: 940px;
+  margin: 0 auto;
+}
+
+div.jumbo {
+  padding: 10px 0 30px 0;
+  background-color: rgba(0, 0, 0, 0.5); 
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+h2 {
+  font-size: 2em;
+  margin-top: 40px;
+  text-align: center;
+  letter-spacing: -2px;
+  color: #fff;
+}
+ 
+h3 {
+  font-size: 1.3em;
+  font-weight: 100;
+  margin-top: 30px;
+  text-align: center;
+  letter-spacing: -1px;
+  color: #fff;
+}
+
+/*
+ * Create dark grey footer with a white logo
+ */
+
+footer {
+  background-color: mediumaquamarine;
+  height: 35px;
+  width: 100%;
+  opacity: .9;
+  margin-bottom: 10px;
+}
+
+footer f1.logo {
+  margin: 0;
+  text-align: center;
+  font-size: 1.7em;
+  color: #fff;
+  float: center;
+}
+
+footer f1.logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/*
+ * Button style
+*/
+
+.boton {
+  border: 2px solid #fff;
+  height: 35px;
+  width: 100px;
+  font-size: 18px;
+  color: #000;
+  background-color: yellow;
+}
+
+/*
+ * Display navigation links inline
+ */
+ 
+.menu {
+  float: right;
+  margin-top: 8px;
+}
+ 
+.menu li {
+  display: inline;
+}
+ 
+.menu li + li {
+  margin-left: 35px;
+}
+ 
+.menu li a {
+  color: #999;
+  text-decoration: none;
+}
