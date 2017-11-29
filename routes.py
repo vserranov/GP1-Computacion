@@ -60,7 +60,7 @@ def media():
       med_local = 0
       con = lite.connect('datos.db')
       cur = con.cursor()
-      cur.execute("SELECT * FROM Datos ORDER BY Fecha DESC, Hora DESC limit 3")
+      cur.execute("SELECT * FROM Datos ORDER BY Fecha DESC, Hora DESC")
       rows = cur.fetchall()
       num = len(rows)
       for row in rows:
@@ -68,12 +68,13 @@ def media():
         med_local = med_local+row[2]
 
       med_local = med_local/num
-      return render_template('media.html', media=med_local, datos=med_remota) 
+      #return render_template('media.html', media=med_local, datos=med_remota) 
+      return json.dumps({'':'','':'','':''})
 
     elif request.form['Media'] == 'Beebotte':
       med_remota = 0
       bclient = BBT(API_KEY, SECRET_KEY)
-      leer = bclient.read('Datos', 'Numero', limit = 3)
+      leer = bclient.read('Datos', 'Numero')
       tot = len(leer)
       for lectura in range(len(leer)):
 	#print leer[lectura]['data']
