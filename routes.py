@@ -5,7 +5,7 @@ from flask import Flask, render_template, request, redirect
 from flask_oauth import OAuth
 from beebotte import *
 import sqlite3 as lite
-import array, json
+import array
 
 API_KEY = '99302716969be17770b3ec06830b5ec5'
 SECRET_KEY = '3064706736c55bd8841e392983aaeeb6248fbd93a6283f5fda94050d72c06a5a'
@@ -60,7 +60,7 @@ def media():
       med_local = 0
       con = lite.connect('datos.db')
       cur = con.cursor()
-      cur.execute("SELECT * FROM Datos ORDER BY Fecha DESC, Hora DESC")
+      cur.execute("SELECT * FROM Datos")
       rows = cur.fetchall()
       num = len(rows)
       for row in rows:
@@ -68,13 +68,12 @@ def media():
         med_local = med_local+row[2]
 
       med_local = med_local/num
-      #return render_template('media.html', media=med_local, datos=med_remota) 
-      return json.dumps({'':'','':'','':''})
+      return render_template('media.html', media=med_local, datos=med_remota) 
 
     elif request.form['Media'] == 'Beebotte':
       med_remota = 0
       bclient = BBT(API_KEY, SECRET_KEY)
-      leer = bclient.read('Datos', 'Numero')
+      leer = bclient.read('Datos', 'Numero', limit = 500)
       tot = len(leer)
       for lectura in range(len(leer)):
 	#print leer[lectura]['data']
@@ -87,4 +86,4 @@ def media():
     return render_template('media.html', media=0, datos=0)
 
 if __name__ == '__main__':
-  app.run(debug=True, host="0.0.0.0", port=5111)
+  app.run(debug=True, host="0.0.0.0", port=8080)
