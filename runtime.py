@@ -16,7 +16,7 @@ def job():
     pagina.close()
 
     # Nos quedamos solo con el primer numero
-    regex = r'\s([\d]{1,3}\.[\d]{2})'
+    regex = r'\s([\d]{1,2}\.[\d]{2})'
     array = re.findall(regex,codigo)
 
     # Almacenamos el numero, la fecha y la hora en la base de datos local (sqlite)
